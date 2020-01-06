@@ -102,7 +102,7 @@ class App extends Component {
 
         return (
             <div>
-                
+                Hello my name is Tex
             </div>
         )
     }
