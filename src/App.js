@@ -96,128 +96,13 @@ class App extends Component {
         orders: [],
         selected_product: null
     }
-
-    showDetail = (selected_product) => {
-        this.setState ({
-            selected_product: selected_product
-        })
-    }
-
-    addOrder = (product) => {
-        let orders = this.state.orders;
-        orders.push(product);
-        this.setState ({
-            orders:orders
-        })
-    }
-
-    addQuantity = (event, index) => {
-        let products = this.state.products;
-        products[index].quantity = event.target.value;
-        this.setState ({
-            products:products
-        })
-    }
-
-   calculerTotal = () => {
-       let orders = this.state.orders;
-       let total = 0;
-       orders.map(order => {
-           return total = total + (order.quantity * order.price);
-       })
-       return total;
-   }
-
-   calculerTVA = () => {
-       return this.calculerTotal() * 0.2;
-   }
         
     render() {
         const { selected_product } = this.state;
 
         return (
             <div>
-                <div className="app-title">Fast Food</div>
-                <div className="row content">
-                    <div className="col-md-9">
-                        <div className="products">
-                            
-                            <div className="row">
-                            {this.state.products.map((product, index) => {
-                                return(
-                                <div className="col-md-4">
-                                    <div className="product">
-                                        <div className="price">{product.price}</div>
-                                        <img src={"./images/" + product.product_picture }/>
-                                        <div className="title">{product.product_name}</div>
-                                        <div className="product-view">
-                                            {/* <button className="btn btn-primary" disabled={!product.quantity} onClick={()=> this.addOrder(product)}>Commander</button>
-                                            <input type="text" className="form-control" value={product.quantity} onChange={(event)=> this.addQuantity(event, index)}></input> */}
-                                        <button className="btn btn-primary" onClick={()=> this.showDetail(product)}><strong>SHOW DETAILS</strong></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                    )
-                                })
-                            }
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="col-md-3">
-                        <div className="orders">
-                            <div className="order-padding">
-                                <div className="title">Your Order</div>
-                                {this.state.orders.map(order => {
-                                    return (
-                                    <div className="order-item">
-                                    <div>
-                                        <div>
-                                            <img src={"./images/" + order.product_picture}/>
-                                        </div>
-
-                                        <div className="order-info">
-                                            x
-                                        </div>
-                                        <div className="order-info">
-                                            {order.quantity}
-                                        </div>
-                                        <div className="order-info">
-                                        {order.price}
-                                        </div>
-                                    </div>
-                                    </div>
-                                    )
-                                })
-                            }   
-                            </div>
-                            
-                            <div className="order-summary">
-                                <div style={{display: 'flex'}}>
-                                    <div>Subtotal : </div><div style={{flex: 'auto', textAlign: 'right'}}>{this.calculerTotal()} Ar</div>
-                                </div>
-                                <div style={{fontStyle: "italic", display: 'flex'}}>
-                                    <div>TVA : </div><div style={{flex: 'auto', textAlign: 'right'}}>{this.calculerTVA()} Ar</div>
-                                </div>
-                               <div style={{display: 'flex'}}>
-                                    <div><strong>Total : </strong></div><div style={{flex: 'auto', textAlign: 'right'}}>{this.calculerTotal() + this.calculerTVA()} Ar</div>
-                               </div>
-                                <button>Checkout</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-
                 
-                    { selected_product ? (
-                        <div className="product-detail">
-                            <h1>{selected_product.product_name}</h1>
-                            <img src={"./images/" + selected_product.product_picture }/>
-                            <h3>{selected_product.price}</h3>
-                            <h6>{selected_product.product_details}</h6>
-                        </div>
-                    ) : null }
             </div>
         )
     }
