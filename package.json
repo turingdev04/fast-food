@@ -12,7 +12,7 @@
     "cleave.js": "^1.5.3",
     "dotenv": "^8.1.0",
     "history": "^4.9.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "moment": "^2.24.0",
     "react": "^16.8.3",
     "react-barcode-reader": "0.0.1",
